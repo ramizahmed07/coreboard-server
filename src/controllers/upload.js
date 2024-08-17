@@ -17,7 +17,7 @@ const upload = async (req, res) => {
     await s3.send(command);
     res.status(200).json({
       message: 'Image uploaded successfully',
-      imageUrl: `${process.env.REACT_APP_S3_URI}/${fileName}`,
+      imageUrl: `${process.env.S3_URI}/${fileName}`,
     });
   } catch (error) {
     console.log(error);

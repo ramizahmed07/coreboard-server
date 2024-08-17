@@ -44,33 +44,6 @@ const generateAuthToken = async (user) => {
   return Promise.resolve(token);
 };
 
-// const uploadBucketObject = async ({ file, endpoint }) => {
-//   const bucketName = process.env.IMAGE_BUCKET_NAME
-//   const { originalname } = file
-//   const params = {
-//     Body: file.buffer,
-//     Bucket: bucketName,
-//     Key: endpoint,
-//     ContentType: file.mimetype,
-//   }
-//   const data = await s3.putObject(params).promise()
-//   const src = encodeURI(`https://${bucketName}.s3.amazonaws.com/${endpoint}`)
-//   let etag = data.ETag
-//   if (data.ETag.charAt(0) === "'" || data.ETag.charAt(0) === '"') {
-//     etag = data.ETag.slice(1, -1)
-//   }
-//   return Promise.resolve({ originalname, ETag: etag, src })
-// }
-
-// const deleteBucketObject = async endpoint => {
-//   const bucketName = process.env.IMAGE_BUCKET_NAME
-//   const params = {
-//     Bucket: bucketName,
-//     Key: endpoint,
-//   }
-//   return s3.deleteObject(params).promise()
-// }
-
 const signupEmail = async ({ email }) => {
   const emailFrom = process.env.EMAIL_FROM;
   const sendgridApiKey = process.env.SENDGRID_API_KEY;
@@ -93,7 +66,7 @@ const signupEmail = async ({ email }) => {
 const forgotPasswordEmail = async ({ email, resetToken }) => {
   const emailFrom = process.env.EMAIL_FROM;
   const sendgridApiKey = process.env.SENDGRID_API_KEY;
-  const clientUri = process.env.REACT_APP_URI;
+  const clientUri = process.env.CLIENT_APP_URI;
   sgMail.setApiKey(sendgridApiKey);
   const resetPasswordLink = `${clientUri}/reset-password/${resetToken}`;
   const msg = {
