@@ -4,7 +4,6 @@ const { emailRegex, forgotPasswordEmail } = require('../utils');
 const forgotPassword = async (req, res) => {
   try {
     const { username } = req.body;
-    console.log('USER, ', username);
     const usersColl = database.users();
     const resetPasswordColl = database.resetPasswordRequests();
     const ObjectID = database.ObjectID();
