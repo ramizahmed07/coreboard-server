@@ -49,9 +49,9 @@ const database = {
   // workbooks() {
   //   return _db.collection('workbooks')
   // },
-  // resetPasswordRequests() {
-  //   return _db.collection('resetPasswordRequests')
-  // },
+  resetPasswordRequests() {
+    return _db.collection('resetPasswordRequests');
+  },
   // categories() {
   //   return _db.collection('categories')
   // },

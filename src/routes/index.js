@@ -19,6 +19,11 @@ router.post('/login', asyncHandler(controllers.login));
 
 router.post('/forgot', asyncHandler(controllers.forgotPassword));
 
+router.post(
+  '/reset-password/:resetToken',
+  asyncHandler(controllers.resetPassword)
+);
+
 router.delete('/logout', auth, asyncHandler(controllers.logout));
 
 router.get('/profile', auth, asyncHandler(controllers.profile));

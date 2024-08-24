@@ -2,6 +2,7 @@
 const dotenv = require('dotenv');
 
 const express = require('express');
+const sgMail = require('@sendgrid/mail');
 const cors = require('cors');
 const { Server } = require('http');
 
@@ -10,6 +11,8 @@ dotenv.config();
 const db = require('./src/database');
 const schemas = require('./src/database/schemas');
 const routes = require('./src/routes');
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const port = process.env.PORT;
 

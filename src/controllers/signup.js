@@ -32,9 +32,9 @@ const signUp = async (req, res) => {
     const token = loginData.token;
     delete loginData.token;
 
-    // if (emailRegex.test(trimmedUsername)) {
-    //   signupEmail({ email: trimmedUsername })
-    // }
+    if (emailRegex.test(trimmedUsername)) {
+      signupEmail({ email: trimmedUsername });
+    }
 
     return res.set({ 'x-authorization': token }).send(loginData);
   } catch (e) {

@@ -46,43 +46,58 @@ const generateAuthToken = async (user) => {
 
 const signupEmail = async ({ email }) => {
   const emailFrom = process.env.EMAIL_FROM;
-  const sendgridApiKey = process.env.SENDGRID_API_KEY;
-  sgMail.setApiKey(sendgridApiKey);
-  const msg = {
-    template_id: 'd-b966dbce146d4077b88710bfe1e0415a',
-    from: emailFrom,
-    personalizations: [
-      {
-        to: { email },
-        dynamic_template_data: {
-          email,
+
+  try {
+    const msg = {
+      template_id: 'd-dd6b83ca1d174452aa2a408c49343c86',
+      from: emailFrom,
+      personalizations: [
+        {
+          to: [{ email }],
+          dynamic_template_data: {
+            username: email,
+          },
         },
-      },
-    ],
-  };
-  await sgMail.send(msg);
+      ],
+    };
+
+    await sgMail.send(msg);
+  } catch (error) {
+    console.error(error);
+    if (error.response) {
+      console.error(error.response.body);
+    }
+  }
 };
 
 const forgotPasswordEmail = async ({ email, resetToken }) => {
   const emailFrom = process.env.EMAIL_FROM;
-  const sendgridApiKey = process.env.SENDGRID_API_KEY;
-  const clientUri = process.env.CLIENT_APP_URI;
-  sgMail.setApiKey(sendgridApiKey);
+
+  const clientUri = process.env.REACT_APP_URI;
+
   const resetPasswordLink = `${clientUri}/reset-password/${resetToken}`;
-  const msg = {
-    template_id: 'd-d27a9a31c86e4282bb94a75168536a9b',
-    from: emailFrom,
-    personalizations: [
-      {
-        to: { email },
-        dynamic_template_data: {
-          email,
-          reset_password_link: resetPasswordLink,
+
+  try {
+    const msg = {
+      template_id: 'd-e498947b37dc48078d57513fe34691d3',
+      from: emailFrom,
+      personalizations: [
+        {
+          to: [{ email }],
+          dynamic_template_data: {
+            link: resetPasswordLink,
+          },
         },
-      },
-    ],
-  };
-  await sgMail.send(msg);
+      ],
+    };
+
+    await sgMail.send(msg);
+  } catch (error) {
+    console.error(error);
+    if (error.response) {
+      console.error(error.response.body);
+    }
+  }
 };
 
 module.exports = {
