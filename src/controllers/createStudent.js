@@ -11,6 +11,7 @@ const createStudent = async (req, res) => {
       username: req.body.username,
       password,
       role: req.body.role,
+      voice: req.body.voice,
       createdAt: new Date(),
       teacherId: new ObjectID(req.user._id),
     };

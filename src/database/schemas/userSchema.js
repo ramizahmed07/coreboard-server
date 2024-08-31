@@ -15,7 +15,7 @@ const userSchema = async () => {
       validator: {
         $jsonSchema: {
           bsonType: 'object',
-          required: ['createdAt', 'username', 'role', 'password'],
+          required: ['createdAt', 'username', 'role', 'password', 'voice'],
           properties: {
             createdAt: {
               bsonType: 'date',
@@ -29,6 +29,17 @@ const userSchema = async () => {
             password: {
               bsonType: 'string',
               minLength: 1,
+            },
+            voice: {
+              bsonType: 'object',
+              properties: {
+                lang: {
+                  bsonType: 'string',
+                },
+                name: {
+                  bsonType: 'string',
+                },
+              },
             },
           },
         },

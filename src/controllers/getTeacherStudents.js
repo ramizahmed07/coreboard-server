@@ -7,7 +7,7 @@ const getTeacherStudents = async (req, res) => {
     const students = await usersColl
       .find(
         { role: 'student', teacherId: new ObjectID(req.user._id) },
-        { projection: { username: 1 } }
+        { projection: { username: 1, voice: 1 } }
       )
       .toArray();
     return res.status(200).send({ students });

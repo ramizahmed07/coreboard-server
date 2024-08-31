@@ -20,6 +20,7 @@ const signUp = async (req, res) => {
       role: req.body.role,
       username: trimmedUsername,
       password,
+      voice: req.body.voice,
       createdAt: new Date(),
       teacherId: new ObjectID(req.body.teacher),
     };

@@ -14,6 +14,9 @@ const updateUser = async (req, res) => {
       const password = await hashPassword(req.body.password);
       updates.password = password;
     }
+    if (req.body.voice) {
+      updates.voice = req.body.voice;
+    }
 
     await usersColl.findOneAndUpdate(
       { _id: new ObjectID(req.body._id) },
